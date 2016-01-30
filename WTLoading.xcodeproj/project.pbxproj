@@ -13,6 +13,11 @@
 		D8D268451C5BCE89008C808A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D268431C5BCE89008C808A /* Main.storyboard */; };
 		D8D268471C5BCE89008C808A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D268461C5BCE89008C808A /* Assets.xcassets */; };
 		D8D2684A1C5BCE89008C808A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D268481C5BCE89008C808A /* LaunchScreen.storyboard */; };
+		D8D268561C5BCFBC008C808A /* fengshan.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268521C5BCFBC008C808A /* fengshan.png */; };
+		D8D268581C5BCFBC008C808A /* leaf_kuang.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268541C5BCFBC008C808A /* leaf_kuang.png */; };
+		D8D268591C5BCFBC008C808A /* leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268551C5BCFBC008C808A /* leaf.png */; };
+		D8D2685C1C5BD296008C808A /* LeafLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685B1C5BD296008C808A /* LeafLoading.m */; };
+		D8D2685F1C5BDBFB008C808A /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685E1C5BDBFB008C808A /* Leaf.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,13 @@
 		D8D268461C5BCE89008C808A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8D268491C5BCE89008C808A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8D2684B1C5BCE89008C808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8D268521C5BCFBC008C808A /* fengshan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fengshan.png; sourceTree = "<group>"; };
+		D8D268541C5BCFBC008C808A /* leaf_kuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaf_kuang.png; sourceTree = "<group>"; };
+		D8D268551C5BCFBC008C808A /* leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaf.png; sourceTree = "<group>"; };
+		D8D2685A1C5BD296008C808A /* LeafLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeafLoading.h; sourceTree = "<group>"; };
+		D8D2685B1C5BD296008C808A /* LeafLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafLoading.m; sourceTree = "<group>"; };
+		D8D2685D1C5BDBFB008C808A /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
+		D8D2685E1C5BDBFB008C808A /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +70,15 @@
 		D8D268391C5BCE89008C808A /* WTLoading */ = {
 			isa = PBXGroup;
 			children = (
+				D8D268511C5BCFB0008C808A /* Resources */,
 				D8D2683D1C5BCE89008C808A /* AppDelegate.h */,
 				D8D2683E1C5BCE89008C808A /* AppDelegate.m */,
 				D8D268401C5BCE89008C808A /* ViewController.h */,
 				D8D268411C5BCE89008C808A /* ViewController.m */,
+				D8D2685A1C5BD296008C808A /* LeafLoading.h */,
+				D8D2685B1C5BD296008C808A /* LeafLoading.m */,
+				D8D2685D1C5BDBFB008C808A /* Leaf.h */,
+				D8D2685E1C5BDBFB008C808A /* Leaf.m */,
 				D8D268431C5BCE89008C808A /* Main.storyboard */,
 				D8D268461C5BCE89008C808A /* Assets.xcassets */,
 				D8D268481C5BCE89008C808A /* LaunchScreen.storyboard */,
@@ -77,6 +94,16 @@
 				D8D2683B1C5BCE89008C808A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8D268511C5BCFB0008C808A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8D268521C5BCFBC008C808A /* fengshan.png */,
+				D8D268541C5BCFBC008C808A /* leaf_kuang.png */,
+				D8D268551C5BCFBC008C808A /* leaf.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +164,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D2684A1C5BCE89008C808A /* LaunchScreen.storyboard in Resources */,
+				D8D268561C5BCFBC008C808A /* fengshan.png in Resources */,
 				D8D268471C5BCE89008C808A /* Assets.xcassets in Resources */,
+				D8D268591C5BCFBC008C808A /* leaf.png in Resources */,
 				D8D268451C5BCE89008C808A /* Main.storyboard in Resources */,
+				D8D268581C5BCFBC008C808A /* leaf_kuang.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +179,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D2685F1C5BDBFB008C808A /* Leaf.m in Sources */,
 				D8D268421C5BCE89008C808A /* ViewController.m in Sources */,
 				D8D2683F1C5BCE89008C808A /* AppDelegate.m in Sources */,
+				D8D2685C1C5BD296008C808A /* LeafLoading.m in Sources */,
 				D8D2683C1C5BCE89008C808A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
