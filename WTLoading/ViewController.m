@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *leafView = [[UIView alloc]initWithFrame:CGRectMake(10, 100, 300, 230)];
+    UIView *leafView = [[UIView alloc]initWithFrame:CGRectMake(10, 80, 300, 230)];
     leafView.backgroundColor = [UIColor colorWithRed:0.99 green:0.80 blue:0.34 alpha:1.0f];
     [self.view addSubview:leafView];
     
@@ -36,16 +36,29 @@
     [leafView addSubview:_leafLoading];
     
     UIButton *start = [UIButton buttonWithType:UIButtonTypeCustom];
-    [start setTitle:@"启动" forState:UIControlStateNormal];
+    [start setTitle:@"start" forState:UIControlStateNormal];
     [start setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [start setFrame:CGRectMake(0, 0, 100, 100)];
+    [start.titleLabel setFont:[UIFont fontWithName:@"MarkerFelt-Thin" size:18]];
+    [start setFrame:CGRectMake(0, 350, 100, 50)];
     [start addTarget:self action:@selector(startAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:start];
+    
+    UIButton *pause = [UIButton buttonWithType:UIButtonTypeCustom];
+    [pause setTitle:@"pause" forState:UIControlStateNormal];
+    [pause setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [pause.titleLabel setFont:[UIFont fontWithName:@"MarkerFelt-Thin" size:18]];
+    [pause setFrame:CGRectMake(0, 400, 100, 50)];
+    [pause addTarget:self action:@selector(pauseAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:pause];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)startAction:(id)sender{
     _leafLoading.progress = 0.0f;
+}
+
+- (void)pauseAction:(id)sender{
+    
 }
 
 - (void)didReceiveMemoryWarning {

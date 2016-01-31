@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, StartType) {
 @property (nonatomic) CGFloat rotateAngle;
 @property (nonatomic) int rotateDirection;
 @property (nonatomic) NSTimeInterval startTime;
+@property (nonatomic) NSTimeInterval endTime;
 
 + (Leaf *)generateLeaf;
 

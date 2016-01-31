@@ -18,6 +18,7 @@
 		D8D268591C5BCFBC008C808A /* leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268551C5BCFBC008C808A /* leaf.png */; };
 		D8D2685C1C5BD296008C808A /* LeafLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685B1C5BD296008C808A /* LeafLoading.m */; };
 		D8D2685F1C5BDBFB008C808A /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685E1C5BDBFB008C808A /* Leaf.m */; };
+		D8D268651C5DC1B4008C808A /* leaf_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268641C5DC1B4008C808A /* leaf_bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		D8D2685B1C5BD296008C808A /* LeafLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafLoading.m; sourceTree = "<group>"; };
 		D8D2685D1C5BDBFB008C808A /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
 		D8D2685E1C5BDBFB008C808A /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
+		D8D268641C5DC1B4008C808A /* leaf_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaf_bg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D8D268521C5BCFBC008C808A /* fengshan.png */,
 				D8D268541C5BCFBC008C808A /* leaf_kuang.png */,
 				D8D268551C5BCFBC008C808A /* leaf.png */,
+				D8D268641C5DC1B4008C808A /* leaf_bg.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D268651C5DC1B4008C808A /* leaf_bg.png in Resources */,
 				D8D2684A1C5BCE89008C808A /* LaunchScreen.storyboard in Resources */,
 				D8D268561C5BCFBC008C808A /* fengshan.png in Resources */,
 				D8D268471C5BCE89008C808A /* Assets.xcassets in Resources */,
@@ -330,6 +334,7 @@
 				D8D268501C5BCE89008C808A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

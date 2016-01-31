@@ -15,6 +15,7 @@
 @interface LeafLoading ()
 
 @property (nonatomic, strong) UIImageView *fengshan;
+@property (nonatomic, strong) UILabel *completionLabel;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, strong) NSArray *leafs;
 
@@ -26,6 +27,10 @@
     if(self = [super initWithFrame:CGRectMake(0, 0, 200, 40)]){
         self.backgroundColor = [UIColor clearColor];
         
+        UIImageView *bgColorView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+        bgColorView.image = [UIImage imageNamed:@"leaf_bg"];
+        [self addSubview:bgColorView];
+        
         UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
         bgImageView.image = [UIImage imageNamed:@"leaf_kuang"];
         [self addSubview:bgImageView];
@@ -34,6 +39,15 @@
         _fengshan.image = [UIImage imageNamed:@"fengshan"];
         _fengshan.center = CGPointMake(200 - 20, 20);
         [self addSubview:_fengshan];
+        
+        _completionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 16, 16)];
+        _completionLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:18];
+        _completionLabel.text = @"100%";
+        _completionLabel.textColor = [UIColor whiteColor];
+        _completionLabel.adjustsFontSizeToFitWidth = YES;
+        _completionLabel.alpha = 0;
+        _completionLabel.center = CGPointMake(200 - 20, 20);
+        [self addSubview:_completionLabel];
         
         _leafs = [self generateLeafs];
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(fengshanEvent:)];
@@ -45,15 +59,28 @@
 - (void)fengshanEvent:(id)sender{
     if(_progress >= 1.0f) {
         [_displayLink invalidate];
-        return;
+        _fengshan.transform = CGAffineTransformIdentity;
+        [UIView animateWithDuration:0.5 animations:^{
+            CGFloat radius = 8;
+            _fengshan.frame = CGRectMake(200 - 20 - radius, 20 - radius, radius * 2, radius * 2);
+            _fengshan.alpha = 0;
+            
+            _completionLabel.frame = CGRectMake(200 - 20 - 16, 20 - 16, 16 * 2, 16 * 2);
+            _completionLabel.alpha = 1;
+        }];
+    }else{
+        _fengshan.transform = CGAffineTransformRotate(_fengshan.transform, -M_PI_2 / 20);
+        
+        if(_progress <= 0.000001){
+            
+        }else if (_progress < 0.4){
+            _progress += 0.003;
+        }else{
+            _progress += 0.005;
+        }
+        
+        [self setNeedsDisplay];
     }
-    _fengshan.transform = CGAffineTransformRotate(_fengshan.transform, -M_PI_2 / 20);
-    if(_progress < 0.4)
-        _progress += 0.001;
-    else
-        _progress += 0.005;
-    
-    [self setNeedsDisplay];
 }
 
 - (void)setProgress:(CGFloat)progress{
@@ -62,6 +89,12 @@
         [_displayLink invalidate];
     }else{
         _leafs = [self generateLeafs];
+        CGFloat radius = 16;
+        _fengshan.frame = CGRectMake(200 - 20 - radius, 20 - radius, radius * 2, radius * 2);
+        _fengshan.alpha = 1;
+        
+        _completionLabel.frame = CGRectMake(200 - 20 - 8, 20 - 8, 8 * 2, 8 * 2);
+        _completionLabel.alpha = 0;
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(fengshanEvent:)];
         [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
@@ -81,7 +114,7 @@
     CGContextRestoreGState(context);
     //进度背景
     CGContextSaveGState(context);
-    CGFloat currentProcessPosition = (200 - 10) * _progress;
+    CGFloat currentProcessPosition = (200 - 10) * _progress + mBorderWidth;
     if(currentProcessPosition < mBorderWidth){
         
     }else if (currentProcessPosition < mArcRadius + mBorderWidth){
@@ -107,15 +140,19 @@
     for(Leaf *leaf in self.leafs){
         CGContextSaveGState(context);
         if(currentTime > leaf.startTime && leaf.startTime != 0){
-            if((currentTime - leaf.startTime) / LEAF_FLOAT_TIME > 0.85) continue;
-            
-            leaf.x = (1 - (currentTime - leaf.startTime) / LEAF_FLOAT_TIME) * (200 - 10);
-            leaf.y = [self getLocationY:leaf];
-            CGFloat angle = (currentTime - leaf.startTime) * 2 * M_PI / LEAF_ROTATE_TIME;
-            CGFloat rotateFraction = leaf.rotateDirection == 0 ? angle + leaf.rotateAngle / 180.0 * M_PI : -angle + leaf.rotateAngle / 180.0 * M_PI;
-            CGContextRotateCTM(context, rotateFraction);
-            CGContextDrawImage(context, CGRectMake(leaf.x * cos(rotateFraction) + leaf.y * sin(rotateFraction), -leaf.x * sin(rotateFraction) + leaf.y * cos(rotateFraction), 16, 8), [UIImage imageNamed:@"leaf"].CGImage);
-            
+            if((currentTime - leaf.startTime) / LEAF_FLOAT_TIME > 0.95) {
+                if(leaf.endTime <= 0.000001){
+                    leaf.endTime = currentTime;
+                    _progress += 0.005;
+                }
+            }else{
+                leaf.x = (1 - (currentTime - leaf.startTime) / LEAF_FLOAT_TIME) * (200 - 10);
+                leaf.y = [self getLocationY:leaf];
+                CGFloat angle = (currentTime - leaf.startTime) * 2 * M_PI / LEAF_ROTATE_TIME;
+                CGFloat rotateFraction = leaf.rotateDirection == 0 ? angle + leaf.rotateAngle / 180.0 * M_PI : -angle + leaf.rotateAngle / 180.0 * M_PI;
+                CGContextRotateCTM(context, rotateFraction);
+                CGContextDrawImage(context, CGRectMake(leaf.x * cos(rotateFraction) + leaf.y * sin(rotateFraction), -leaf.x * sin(rotateFraction) + leaf.y * cos(rotateFraction), 16, 8), [UIImage imageNamed:@"leaf"].CGImage);
+            };
         }
         CGContextRestoreGState(context);
     }
