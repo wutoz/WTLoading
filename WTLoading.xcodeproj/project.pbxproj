@@ -19,6 +19,7 @@
 		D8D2685C1C5BD296008C808A /* LeafLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685B1C5BD296008C808A /* LeafLoading.m */; };
 		D8D2685F1C5BDBFB008C808A /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2685E1C5BDBFB008C808A /* Leaf.m */; };
 		D8D268651C5DC1B4008C808A /* leaf_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D268641C5DC1B4008C808A /* leaf_bg.png */; };
+		D8D268681C5E5A40008C808A /* LeafFan.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D268671C5E5A40008C808A /* LeafFan.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		D8D2685D1C5BDBFB008C808A /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
 		D8D2685E1C5BDBFB008C808A /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
 		D8D268641C5DC1B4008C808A /* leaf_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaf_bg.png; sourceTree = "<group>"; };
+		D8D268661C5E5A40008C808A /* LeafFan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeafFan.h; sourceTree = "<group>"; };
+		D8D268671C5E5A40008C808A /* LeafFan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafFan.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				D8D2685B1C5BD296008C808A /* LeafLoading.m */,
 				D8D2685D1C5BDBFB008C808A /* Leaf.h */,
 				D8D2685E1C5BDBFB008C808A /* Leaf.m */,
+				D8D268661C5E5A40008C808A /* LeafFan.h */,
+				D8D268671C5E5A40008C808A /* LeafFan.m */,
 				D8D268431C5BCE89008C808A /* Main.storyboard */,
 				D8D268461C5BCE89008C808A /* Assets.xcassets */,
 				D8D268481C5BCE89008C808A /* LaunchScreen.storyboard */,
@@ -186,6 +191,7 @@
 				D8D2685F1C5BDBFB008C808A /* Leaf.m in Sources */,
 				D8D268421C5BCE89008C808A /* ViewController.m in Sources */,
 				D8D2683F1C5BCE89008C808A /* AppDelegate.m in Sources */,
+				D8D268681C5E5A40008C808A /* LeafFan.m in Sources */,
 				D8D2685C1C5BD296008C808A /* LeafLoading.m in Sources */,
 				D8D2683C1C5BCE89008C808A /* main.m in Sources */,
 			);

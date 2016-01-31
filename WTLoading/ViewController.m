@@ -58,7 +58,7 @@
 }
 
 - (void)pauseAction:(id)sender{
-    
+    _leafLoading.progress = 1.0f;
 }
 
 - (void)didReceiveMemoryWarning {

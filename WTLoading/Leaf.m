@@ -15,8 +15,7 @@
     leaf.type = arc4random() % 3;
     leaf.rotateAngle = arc4random() % 360;
     leaf.rotateDirection = arc4random() % 2;
-    leaf.startTime = [[NSDate date] timeIntervalSince1970] * 1000 + arc4random() % (int)(LEAF_FLOAT_TIME * 3);
-    
+
     return leaf;
 }
 
