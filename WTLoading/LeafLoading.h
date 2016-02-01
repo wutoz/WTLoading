@@ -16,6 +16,8 @@
 
 @interface LeafLoading : UIView
 
+- (instancetype)init;
+
 @property (nonatomic) CGFloat progress;
 
 @end

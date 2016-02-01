@@ -24,48 +24,47 @@
 @interface LeafLoading ()
 
 @property (nonatomic, strong) LeafFan *fan;
-@property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, strong) NSArray *leafs;
+@property (nonatomic, strong) CADisplayLink *displayLink;
 
 @end
 
 @implementation LeafLoading
 
+#pragma mark - init
 - (instancetype)init{
     if(self = [super initWithFrame:CGRectMake(0, 0, mLoadingW, mLoadingH)]){
         self.backgroundColor = [UIColor clearColor];
-        
         UIImageView *bgColorView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, mLoadingW, mLoadingH)];
         bgColorView.image = [UIImage imageNamed:@"leaf_bg"];
         [self addSubview:bgColorView];
-        
         UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, mLoadingW, mLoadingH)];
         bgImageView.image = [UIImage imageNamed:@"leaf_kuang"];
         [self addSubview:bgImageView];
-        
         _fan = [[LeafFan alloc]initWithFrame:CGRectMake(0, 0, mFanW, mFanW)];
         _fan.center = CGPointMake(mLoadingW - mLoadingH / 2, mLoadingH / 2);
         [self addSubview:_fan];
         
-        [self setUp];
+        [self prepareLeafs];
     }
     return self;
 }
 
-- (void)setUp{
+- (void)prepareLeafs{
     [_fan setCompletion:NO];
     _leafs = [self generateLeafs];
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(fengshanEvent:)];
     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
+#pragma mark - Utils
 - (void)setProgress:(CGFloat)progress{
     _progress = progress;
     
     if (_progress >= 1.0f) {
         [_displayLink invalidate];
     } else {
-        [self setUp];
+        [self prepareLeafs];
     }
 }
 
@@ -87,6 +86,34 @@
     }
 }
 
+- (NSArray *)generateLeafs{
+    NSMutableArray *temp = [NSMutableArray array];
+    for(int i = 0; i < MAX_LEAFS; i++){
+        Leaf *leaf = [Leaf generateLeaf];
+        [temp addObject:leaf];
+    }
+    return temp;
+}
+
+- (CGFloat)getLocationY:(Leaf *)leaf{
+    // y = A(wx + Q) + h
+    CGFloat w = 2 * M_PI / mLoadingW;
+    CGFloat a = MIDDLE_AMPLITUDE;
+    switch (leaf.type) {
+        case LeafStartTypeLittle:
+            a = MIDDLE_AMPLITUDE - AMPLITUDE_DISPARITY;
+            break;
+        case LeafStartTypeMiddle:
+            a = MIDDLE_AMPLITUDE;
+            break;
+        case LeafStartTypeBig:
+            a = MIDDLE_AMPLITUDE + AMPLITUDE_DISPARITY;
+            break;
+    }
+    return a * sin(w * leaf.x) + mArcRadius + mBorderWidth;
+}
+
+#pragma mark - drawRect
 - (void)drawRect:(CGRect)rect{
     //大白背景
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -146,33 +173,6 @@
         }
         CGContextRestoreGState(context);
     }
-}
-
-- (NSArray *)generateLeafs{
-    NSMutableArray *temp = [NSMutableArray array];
-    for(int i = 0; i < MAX_LEAFS; i++){
-        Leaf *leaf = [Leaf generateLeaf];
-        [temp addObject:leaf];
-    }
-    return temp;
-}
-
-- (CGFloat)getLocationY:(Leaf *)leaf{
-    // y = A(wx + Q) + h
-    CGFloat w = 2 * M_PI / mLoadingW;
-    CGFloat a = MIDDLE_AMPLITUDE;
-    switch (leaf.type) {
-        case LeafStartTypeLittle:
-            a = MIDDLE_AMPLITUDE - AMPLITUDE_DISPARITY;
-            break;
-        case LeafStartTypeMiddle:
-            a = MIDDLE_AMPLITUDE;
-            break;
-        case LeafStartTypeBig:
-            a = MIDDLE_AMPLITUDE + AMPLITUDE_DISPARITY;
-            break;
-    }
-    return a * sin(w * leaf.x) + mArcRadius + mBorderWidth;
 }
 
 @end
