@@ -57,7 +57,7 @@
     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
-#pragma mark - Utils
+#pragma mark - setter&getter
 - (void)setProgress:(CGFloat)progress{
     _progress = progress;
     
@@ -68,29 +68,10 @@
     }
 }
 
-- (void)fengshanEvent:(id)sender{
-    if(_progress >= 1.0f) {
-        [_displayLink invalidate];
-        [_fan setCompletion:YES];
-    }else{
-        _fan.transform = CGAffineTransformRotate(_fan.transform, -M_PI_2 / 20);
-        [self setNeedsDisplay];
-        
-        if(_progress <= 0.000001) return;
-        
-        if (_progress < mSepPos) {
-            _progress += mSpeed1;
-        }else{
-            _progress += mSpeed3;
-        }
-    }
-}
-
 - (NSArray *)generateLeafs{
     NSMutableArray *temp = [NSMutableArray array];
     for(int i = 0; i < MAX_LEAFS; i++){
-        Leaf *leaf = [Leaf generateLeaf];
-        [temp addObject:leaf];
+        [temp addObject:[Leaf generateLeaf]];
     }
     return temp;
 }
@@ -111,6 +92,25 @@
             break;
     }
     return a * sin(w * leaf.x) + mArcRadius + mBorderWidth;
+}
+
+#pragma mark - fengshan
+- (void)fengshanEvent:(id)sender{
+    if(_progress >= 1.0f) {
+        [_displayLink invalidate];
+        [_fan setCompletion:YES];
+    }else{
+        _fan.transform = CGAffineTransformRotate(_fan.transform, -M_PI_2 / 20);
+        [self setNeedsDisplay];
+        
+        if(_progress <= 0.000001) return;
+        
+        if(_progress < mSepPos) {
+            _progress += mSpeed1;
+        }else{
+            _progress += mSpeed3;
+        }
+    }
 }
 
 #pragma mark - drawRect
